@@ -1,0 +1,15 @@
+doctype 5
+html(lang="en")
+    head
+        title=name
+        each jsfile in g.javascript_filelist
+            script(type="text/javascript", src="/static/js/#{jsfile}")
+        each cssfile in g.css_filelist
+            link(rel="stylesheet", type="text/css", media="screen", href="/static/css/#{cssfile}")
+
+    body
+        div.header(attr="name")
+        .maincontents
+            block maincontents
+        .footer
+

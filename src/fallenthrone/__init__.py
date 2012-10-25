@@ -1,5 +1,6 @@
 from flask import Flask
 from jinja2 import TemplateNotFound
+import middlewares
 import mongoengine
 import os
 
@@ -18,6 +19,9 @@ except ImportError:
     print "Failed to load configuration for %s, Loading default configuration." % ENV.title()
     app.config.from_object ('fallenthrone.settings.Config')
 
+# Lets add middlewares.
+# app.wsgi_app = middlewares.ContextMiddleware (app.wsgi_app)
+
 # Lets connect to MongoDB
 try:
     mongoengine.connect (app.config['DATABASE_NAME'], host = app.config['DATABASE_HOST'], port = app.config['DATABASE_PORT'], username = app.config['MONGO_USER'], password = app.config['MONGO_PASSWORD'])
@@ -26,6 +30,7 @@ except mongoengine.connection.ConnectionError:
     sys.exit (1)
 
 # Lets bring our views lying there into the application.
+import hooks
 import views
 
 if __name__ == "__main__":

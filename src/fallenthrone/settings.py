@@ -1,3 +1,4 @@
+import os
 
 class Config (object):
     DEBUG = False
@@ -8,6 +9,11 @@ class Config (object):
     DATABASE_PORT = 27017
     MONGO_USER = 'fallenthrone'
     MONGO_PASSWORD = 'mongo'
+
+    JSFILES = ['effects.js']
+    CSSFILES = ['style.css']
+
+    ENV = os.environ.get ("MODE", "DEVELOPMENT")
 
 class DevelopmentConfig (Config):
     DEBUG = True
