@@ -23,3 +23,4 @@ class ProductionConfig (Config):
     DEBUG = False
     PORT = 8765
     DATABASE_NAME = "fallenthrone_prod"
+

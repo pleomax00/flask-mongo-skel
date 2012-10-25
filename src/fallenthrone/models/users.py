@@ -7,6 +7,7 @@ class User (Document):
     _password = StringField ()
     email = StringField ()
 
+    @property
     def get_full_name (self):
         """ Get's user's full name """
         return "%s %s" % (self.first_name, self.last_name)
