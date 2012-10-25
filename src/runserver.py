@@ -29,9 +29,9 @@ if ENV == "PRODUCTION":
         pass
 
 if using_gevent:
-    http_server = WSGIServer(('', PORT), app)
+    http_server = WSGIServer(('0.0.0.0', PORT), app)
     http_server.serve_forever()
 else:
     print "This is Flask Development Server at %d (Don't use it in the production)..." % (PORT)
-    app.run (port = PORT)
+    app.run (host = '0.0.0.0', port = PORT)
 

@@ -7,6 +7,7 @@ connect ("fallenthrone")
 
 app = Flask(__name__)
 app.debug = True
+app.jinja_env.add_extension ('pyjade.ext.jinja.PyJadeExtension')
 
 import views
 

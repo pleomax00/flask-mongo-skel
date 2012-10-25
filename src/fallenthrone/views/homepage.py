@@ -5,8 +5,10 @@ Serves the homepage.
 """
 
 from fallenthrone import app
+from flask import render_template
 from fallenthrone.models import User
 
 @app.route ("/")
 def index ():
-    return "Home Page Goes Here.."
+    name = "yahoo"
+    return render_template ('hello.jade', name=name)
