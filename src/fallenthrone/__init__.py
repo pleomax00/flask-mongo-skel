@@ -19,7 +19,7 @@ except ImportError:
     print "Failed to load configuration for %s, Loading default configuration." % ENV.title()
     app.config.from_object ('fallenthrone.settings.Config')
 
-# Lets add middlewares.
+# Lets add our middlewares.
 # app.wsgi_app = middlewares.ContextMiddleware (app.wsgi_app)
 
 # Lets connect to MongoDB
@@ -27,12 +27,13 @@ try:
     mongoengine.connect (app.config['DATABASE_NAME'], host = app.config['DATABASE_HOST'], port = app.config['DATABASE_PORT'], username = app.config['MONGO_USER'], password = app.config['MONGO_PASSWORD'])
 except mongoengine.connection.ConnectionError:
     print "Cannot connect to MongoDB on %s:%s using user '%s' with password '*****'.." % ('localhost', app.config['DATABASE_PORT'], app.config['MONGO_USER'])
-    sys.exit (1)
+    sys.exit (1)    # Can't work without Database!
 
 # Lets bring our views lying there into the application.
 import hooks
 import views
 
+# Finally run our application.
 if __name__ == "__main__":
     app.run()
 
