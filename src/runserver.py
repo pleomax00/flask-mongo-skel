@@ -12,12 +12,7 @@ from fallenthrone import app
 # There are two application modes, PRODUCTION or DEVELOPMENT
 # They are loaded as per the ENVironment variable set.
 ENV = os.environ.get ("MODE", "DEVELOPMENT")
-PORT = 5000 if ENV == "DEVELOPMENT" else 8765
-
-# Lets run the app in debug mode if we are into DEVELOPMENT
-app.debug = True if ENV == "DEVELOPMENT" else False
-if ENV == "DEVELOPMENT":
-    print "Loading MODE:", ENV
+PORT = app.config['PORT']
 
 # In production mode, we would want to use gevent to serve our requests.
 using_gevent = False
@@ -26,7 +21,8 @@ if ENV == "PRODUCTION":
         from gevent.wsgi import WSGIServer
         using_gevent = True
     except ImportError:
-        pass
+        print "Cannot use WSGIServer, please install.."
+        sys.exit (1)
 
 if using_gevent:
     http_server = WSGIServer(('0.0.0.0', PORT), app)

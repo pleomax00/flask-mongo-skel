@@ -6,9 +6,16 @@ Serves the homepage.
 
 from fallenthrone import app
 from flask import render_template
+from flask.views import MethodView
 from fallenthrone.models import User
 
-@app.route ("/")
-def index ():
-    name = "yahoo"
-    return render_template ('hello.jade', name=name)
+class Index (MethodView):
+
+    def get (self):
+        name = "yahoo"
+        global request
+        print request
+        return render_template ('hello.jade', name=name)
+
+index_view = Index.as_view ('index')
+app.add_url_rule ('/', view_func = Index.as_view ('users'))
