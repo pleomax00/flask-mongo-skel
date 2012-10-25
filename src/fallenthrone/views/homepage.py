@@ -19,5 +19,4 @@ class Index (MethodView):
         u.save ()
         return render_template ('hello.jade', name=name)
 
-index_view = Index.as_view ('index')
-app.add_url_rule ('/', view_func = Index.as_view ('users'))
+app.add_url_rule ('/', view_func = Index.as_view ('index'))
