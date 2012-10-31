@@ -1,11 +1,15 @@
 from mongoengine import *
 
 class User (Document):
-    username = StringField ()
+    handle = StringField ()
     first_name = StringField ()
     last_name = StringField ()
     _password = StringField ()
     email = StringField ()
+    active = BooleanField (default = True)
+
+    twitter_access_key = StringField ()
+    twitter_secret_key = StringField ()
 
     @property
     def get_full_name (self):
@@ -23,4 +27,16 @@ class User (Document):
 
     def setpassword (self, password):
         self._password = self._hash (password)
+
+    def is_active (self):
+        return self.active
+    
+    def get_id (self):
+        return unicode (self.handle)
+
+    def is_anonymous (self):
+        return False
+
+    def is_authenticated (self):
+        return True
 
