@@ -2,7 +2,7 @@ from flask import Flask
 from jinja2 import TemplateNotFound
 import middlewares
 import mongoengine
-import os
+import os, sys
 
 ENV = os.environ.get ("MODE", "DEVELOPMENT")
 print "Loading %s..." % (ENV)

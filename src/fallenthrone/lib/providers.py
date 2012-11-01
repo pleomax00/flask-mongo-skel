@@ -6,6 +6,12 @@ class ImageServiceProvider (object):
     def __init__ (self):
         pass
     
+    def twitpic (self, url, parsed):
+        return {
+            "image": "http://twitpic.com/show/full%s" % (parsed.path),
+            "thumbnail": "http://twitpic.com/show/mini%s" % (parsed.path),
+        }
+
     def instagram (self, url, parsed):
         return self.instagr (url, parsed)
 

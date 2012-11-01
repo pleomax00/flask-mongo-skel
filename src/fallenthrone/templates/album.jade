@@ -3,4 +3,7 @@ extends master
 block maincontents
     div.user
         p #{handle}
+        - for img in images
+            a(href=img['image'])
+                img(src=img['thumbnail'])
 
