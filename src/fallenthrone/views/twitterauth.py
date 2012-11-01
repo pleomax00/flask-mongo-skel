@@ -25,9 +25,10 @@ class TwitterAuth (MethodView):
         else:
             request_token = dict (parse_qsl(content))
 
+        print content
         session['request_token'] = request_token
         callback_url = "http://%s/auth/callback" % (request.host)
-        redirect_to = '%s?oauth_token=%s' % (app.config['AUTHORIZATION_URL'], request_token['oauth_token'])
+        redirect_to = '%s?oauth_token=%s' % (app.config['SIGNIN_URL'], request_token['oauth_token'])
         return redirect (redirect_to)
 
 
@@ -42,7 +43,7 @@ class TwitterCallback (MethodView):
         resp, content = oauth_client.request (app.config['ACCESS_TOKEN_URL'], method='GET' )
         access_token  = dict (parse_qsl(content))
         if resp['status'] != '200':
-            raise Exception ( "The request for a Token did not succeed" )
+            raise Exception ("The request for a Token did not succeed")
         else:
             tw_access = access_token['oauth_token']
             tw_secret = access_token['oauth_token_secret']
@@ -70,7 +71,6 @@ class Logout (MethodView):
 class Login (MethodView):
 
     def get (self):
-        print current_user.is_authenticated ()
         return render_template ("login.jade", **locals())
 
 

@@ -1,4 +1,15 @@
-.maincontents {
+* {
+    margin: 0;
+    padding: 0;
+}
+.maincontents, .inheader {
     width: 1000px;
     margin: auto;
+}
+
+.header {
+    height: 30px;
+}
+.inheader > .logout {
+    float: right;
 }

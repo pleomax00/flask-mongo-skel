@@ -3,3 +3,12 @@ extends master
 block maincontents
     div.user
         p Welcome to albums!
+        table(border="0")
+            - for row in grouped
+                tr.userplaceholder
+                - for user in row
+                    td
+                        img(src=user["profilepic"], width="73px", height="73px")
+                        p 
+                            a(href="/album/#{user["handle"]}") #{user["name"]}
+

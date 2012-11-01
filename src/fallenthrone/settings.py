@@ -23,6 +23,9 @@ class Config (object):
     AUTHORIZATION_URL = 'https://api.twitter.com/oauth/authorize'
     SIGNIN_URL        = 'https://twitter.com/oauth/authenticate'
 
+    CACHE_FRIENDS_INTERVAL = 3600
+    CACHE_IMAGES_INTERVAL = 3600
+
     def __init__ (self):
         raise Exception ("Cannot initialize Config directly, use subclasses.")
 
