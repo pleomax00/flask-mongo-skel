@@ -21,7 +21,7 @@ class TweetParser (object):
         return friends
 
     def parse (self, handle):
-        statuses = self.api.GetUserTimeline (handle, count = 5, include_rts = True, include_entities = True)
+        statuses = self.api.GetUserTimeline (handle, count = 200, include_rts = True, include_entities = True)
         images = []
         serviceprovider = ImageServiceProvider ()
         for i in statuses:
